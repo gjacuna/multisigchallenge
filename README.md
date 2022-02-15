@@ -39,11 +39,20 @@ cd scaffold-eth
 yarn deploy
 ```
 
-🔏 Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`
+# For this particular challenge, I had to build a Multi-Signature Wallet Smart Contract (MultiSig Wallet for friends) starting from the Scaffold-eth master branch.
 
-📝 Edit your frontend `App.jsx` in `packages/react-app/src`
+Main inspiration is, like always, [Austin](https://twitter.com/austingriffith) and this branch of [Scaffold-Eth](https://github.com/scaffold-eth/scaffold-eth-examples/tree/meta-multi-sig/) from where I snipped almost everything.
 
-💼 Edit your deployment scripts in `packages/hardhat/deploy`
+Things to look at
+
+🔏 The MultiSig smart contract `MultiSig.sol` in `packages/hardhat/contracts`. It's updated to solidity >0.8.
+
+📝 Most of the frontend is on `App.jsx` in `packages/react-app/src`, and the components and view folders right there.
+
+💼 Deployment script is the basic in `packages/hardhat/deploy`, just added the contract constructor arguments for my wallets. Make sure you change yours!
+
+# TODO
+Decentralized storage of transactions and signatures.
 
 📱 Open http://localhost:3000 to see the app
 

@@ -52,7 +52,8 @@
     "deploy-and-graph": "yarn deploy && yarn graph-ship-local",
     "theme": "yarn workspace @scaffold-eth/react-app theme",
     "watch-theme": "yarn workspace @scaffold-eth/react-app watch",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "backend": "cd packages/backend && node index"
   },
   "workspaces": {
     "packages": [
@@ -67,7 +68,9 @@
       "**/hardhat-ts/**"
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "cors": "^2.8.5"
+  },
   "devDependencies": {
     "husky": "^7.0.2"
   }

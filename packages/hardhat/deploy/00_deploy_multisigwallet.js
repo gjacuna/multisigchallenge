@@ -17,16 +17,25 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
-  await deploy("YourContract", {
+  await deploy("MultiSigWallet", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
-    // args: [ "Hello", ethers.utils.parseEther("1.5") ],
+    args: [
+      chainId,
+      [
+        "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697",
+        "0x8Dc03Ecb101ceC003ca496fc37d99b38f30378af",
+        "0x97843608a00e2bbc75ab0c1911387e002565dede",
+        "0x990DA8a0d97E441655d7BA20F9fb9652dFEeFba8"
+      ],
+      2
+    ],
     log: true,
     waitConfirmations: 5,
   });
 
   // Getting a previously deployed contract
-  const YourContract = await ethers.getContract("YourContract", deployer);
+  const multiSigWallet = await ethers.getContract("MultiSigWallet", deployer);
   /*  await YourContract.setPurpose("Hello");
   
     To take ownership of yourContract using the ownable library uncomment next line and add the 
@@ -76,4 +85,4 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   //   console.error(error);
   // }
 };
-module.exports.tags = ["YourContract"];
+module.exports.tags = ["MultiSigWallet"];
