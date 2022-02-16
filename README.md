@@ -41,7 +41,7 @@ yarn deploy
 
 # For this particular challenge, I had to build a Multi-Signature Wallet Smart Contract (MultiSig Wallet for friends) starting from the Scaffold-eth master branch.
 
-Main inspiration is, like always, [Austin](https://twitter.com/austingriffith) and this branch of [Scaffold-Eth](https://github.com/scaffold-eth/scaffold-eth-examples/tree/meta-multi-sig/) from where I snipped almost everything.
+Main inspiration is, like always, 🏰 [BuidlGuidl](https://BuidlGuidl.com) and [Austin](https://twitter.com/austingriffith). Using this branch of [Scaffold-Eth](https://github.com/scaffold-eth/scaffold-eth-examples/tree/meta-multi-sig/) from where I snipped almost everything.
 
 Things to look at
 

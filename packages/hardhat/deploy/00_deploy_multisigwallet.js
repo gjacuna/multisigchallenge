@@ -26,7 +26,6 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
         "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697",
         "0x8Dc03Ecb101ceC003ca496fc37d99b38f30378af",
         "0x97843608a00e2bbc75ab0c1911387e002565dede",
-        "0x990DA8a0d97E441655d7BA20F9fb9652dFEeFba8"
       ],
       2
     ],
