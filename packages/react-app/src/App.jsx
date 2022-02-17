@@ -32,6 +32,7 @@ import deployedContracts from "./contracts/hardhat_contracts.json";
 import { Transactor, Web3ModalSetup } from "./helpers";
 import { Home, ExampleUI, Hints, Subgraph, CreateTransaction, FrontPage, Owners, Transactions } from "./views";
 import { useStaticJsonRPC } from "./hooks";
+import Gun from 'gun'
 
 const { ethers } = require("ethers");
 /*
@@ -54,7 +55,7 @@ const { ethers } = require("ethers");
 */
 
 /// 📡 What chain are your contracts deployed to?
-const initialNetwork = NETWORKS.goerli; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const initialNetwork = NETWORKS.localhost; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
 const DEBUG = true;
@@ -259,7 +260,11 @@ function App(props) {
   const nonce = useContractReader(readContracts, contractName, "nonce")
   if(DEBUG) console.log("# nonce:",nonce)
 
-  const poolServerUrl = "https://3ssemabodc.execute-api.us-east-1.amazonaws.com/dev/"
+  // const poolServerUrl = "http://localhost:49832/"
+
+  const gun = Gun({
+    peers: ['http:localhost:8000/gun'] // Put the relay node that you want here
+  })
 
   return (
     <div className="App">
@@ -321,10 +326,11 @@ function App(props) {
         </Route>
         <Route path="/create">
           <CreateTransaction
-            poolServerUrl={poolServerUrl}
+            // poolServerUrl={poolServerUrl}
             contractName={contractName}
             address={address}
             userSigner={userSigner}
+            gun={gun}
             mainnetProvider={mainnetProvider}
             localProvider={localProvider}
             yourLocalBalance={yourLocalBalance}
@@ -336,10 +342,11 @@ function App(props) {
         </Route>
         <Route path="/pool">
           <Transactions
-            poolServerUrl={poolServerUrl}
+            // poolServerUrl={poolServerUrl}
             contractName={contractName}
             address={address}
             userSigner={userSigner}
+            gun={gun}
             mainnetProvider={mainnetProvider}
             localProvider={localProvider}
             yourLocalBalance={yourLocalBalance}
@@ -370,6 +377,7 @@ function App(props) {
           />
         </Route>
         <Route path="/hints">
+          <ExampleUI />
           <Hints
             address={address}
             yourLocalBalance={yourLocalBalance}

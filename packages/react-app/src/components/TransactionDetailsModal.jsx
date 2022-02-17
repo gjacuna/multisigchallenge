@@ -47,7 +47,7 @@ const TransactionDetailsModal = function ({visible, handleOk, mainnetProvider, a
               <Address fontSize={16} address={addressTo} ensProvider={mainnetProvider} />
             </div>
             <p key="Amount">
-              <Balance fontSize={16} balance={value._isBigNumber ? value: (value.toFixed(18)*10**18).toString()} dollarMultiplier={price} />
+              <Balance fontSize={16} balance={value._isBigNumber ? value: ((value*1).toFixed(18)*10**18).toString()} dollarMultiplier={price} />
             </p>
           </>
           }

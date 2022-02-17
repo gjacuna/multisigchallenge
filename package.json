@@ -53,7 +53,8 @@
     "theme": "yarn workspace @scaffold-eth/react-app theme",
     "watch-theme": "yarn workspace @scaffold-eth/react-app watch",
     "postinstall": "husky install",
-    "backend": "cd packages/backend && node index"
+    "backend": "cd packages/backend && node index",
+    "gun": "cd packages/backend && node gun"
   },
   "workspaces": {
     "packages": [
@@ -69,7 +70,8 @@
     ]
   },
   "dependencies": {
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "gun": "^0.2020.1235"
   },
   "devDependencies": {
     "husky": "^7.0.2"

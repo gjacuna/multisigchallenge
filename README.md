@@ -51,8 +51,13 @@ Things to look at
 
 💼 Deployment script is the basic in `packages/hardhat/deploy`, just added the contract constructor arguments for my wallets. Make sure you change yours!
 
-# TODO
-Decentralized storage of transactions and signatures.
+# Now with decentralized GUNDB to store transactions and signatures!
+
+First time using this, so move with care.
+
+📔 There's a GunDB connection now! It should work out of the box (ie, no need for a centralized peer), but I recommend rnning `yarn gun` to start a peer to coordinate the storage between browsers (Sometimes the connection might not work. It's all coordination, am I right?).
+
+💼 When you're ready to deploy, go to [GunDB's GitHub, deploy section](https://github.com/amark/gun#deploy), and deploy a simple peer to Heroku, Zeet, or whatever. Just remember to add the link to the Gun initialization in App.jsx
 
 📱 Open http://localhost:3000 to see the app
 

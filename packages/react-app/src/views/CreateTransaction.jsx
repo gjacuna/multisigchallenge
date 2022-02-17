@@ -16,6 +16,7 @@ export default function CreateTransaction({
   userSigner,
   mainnetProvider,
   localProvider,
+  gun,
   yourLocalBalance,
   price,
   tx,
@@ -212,7 +213,19 @@ export default function CreateTransaction({
               console.log("isOwner", isOwner);
 
               if (isOwner) {
-                const res = await axios.post(poolServerUrl, {
+                // const res = await axios.post(poolServerUrl, {
+                //   chainId: localProvider._network.chainId,
+                //   address: readContracts[contractName].address,
+                //   nonce: nonce.toNumber(),
+                //   to,
+                //   amount,
+                //   data,
+                //   hash: newHash,
+                //   signatures: [signature],
+                //   signers: [recover],
+                // });
+
+                const newTx = gun.get(newHash).put({
                   chainId: localProvider._network.chainId,
                   address: readContracts[contractName].address,
                   nonce: nonce.toNumber(),
@@ -220,18 +233,21 @@ export default function CreateTransaction({
                   amount,
                   data,
                   hash: newHash,
-                  signatures: [signature],
-                  signers: [recover],
-                });
+                  signatures: signature,
+                  signers: recover,
+                })
+                gun.get(readContracts[contractName].address+"_"+localProvider._network.chainId).set(newTx)
                 // IF SIG IS VALUE ETC END TO SERVER AND SERVER VERIFIES SIG IS RIGHT AND IS SIGNER BEFORE ADDING TY
 
-                console.log("RESULT", res.data);
+                // console.log("RESULT", res.data);
+                newTx.once((data)=>{console.log("RESULT", data)});
 
                 setTimeout(() => {
                   history.push("/pool");
                 }, 2777);
 
-                setResult(res.data.hash);
+                // setResult(res.data.hash);
+                newTx.once((data)=>{setResult(data.hash)});
                 setTo();
                 setAmount("0");
                 setData("0x00");
