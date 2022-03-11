@@ -263,7 +263,7 @@ function App(props) {
   // const poolServerUrl = "http://localhost:49832/"
 
   const gun = Gun({
-    peers: ['http:localhost:8000/gun'] // Put the relay node that you want here
+    peers: ['http:localhost:8000/gun'] // Put your own relay node here. make sure you run yarn gun if you're on local
   })
 
   return (

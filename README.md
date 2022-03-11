@@ -1,3 +1,38 @@
+# Multi-Signature Wallet Smart Contract (MultiSig Wallet for friends) starting from the Scaffold-eth master branch.
+
+For more context, peer learning and more fun, [join the telegram channel](https://t.me/+zKllN8OlGuxmYzFh)!
+
+Main inspiration is, like always, 🏰 [BuidlGuidl](https://BuidlGuidl.com) and [Austin](https://twitter.com/austingriffith). Started from master and used this branch of [Scaffold-Eth](https://github.com/scaffold-eth/scaffold-eth-examples/tree/meta-multi-sig/) from where I snipped lots of things (almost everything).
+
+## Things to look at
+
+🔏 The MultiSig smart contract `MultiSig.sol` in `packages/hardhat/contracts`. It's updated to solidity >0.8. Took out the streams to simplify a little.
+
+📝 Most of the frontend is on `App.jsx` in `packages/react-app/src`, and the components and view folders right there.
+
+💼 Deployment script is the basic in `packages/hardhat/deploy`, just added the contract constructor arguments for my wallets. Make sure you change yours!
+
+# Now with decentralized GUNDB to store transactions and signatures!
+
+First time using this, so move with care!
+
+📔 There's a GunDB connection now! It should work out of the box (ie, no need for a centralized peer), but I recommend rnning `yarn gun` to start a peer to coordinate the storage between browsers (Sometimes the connection might not work. It's all coordination, am I right?).
+
+I just modified the existing code to store transactions and signatures in GUNDB. I had to avoid using arrays (not supported by GUNDB) and had to learn how to use sets and instances.
+
+**Make sure you read the [GUNDB docs](https://gun.eco/) if you have doubts.**
+
+💼 When you're ready to deploy, go to [GunDB's GitHub, deploy section](https://github.com/amark/gun#deploy), and deploy a simple peer to Heroku, Zeet, or whatever. Just remember to add the link to the Gun initialization in App.jsx (check the comments in the code)
+
+📱 Open http://localhost:3000 to see the app or you can see a live version (on Goërli) here: http://gakmultisigch.surge.sh/ (If you wanna become a signer, look me up in the Telegram channels!)
+
+# How does GUNDB work
+
+Gundb stores your data in local storage and uses webrtc to find peers (browsers or computers) connected to the same frontend. If it finds peers, it syncs the data so all connected parties have the same information.
+
+**What happens if users are not connected at the same time?** You're onto something. It requires peers to be connected all the time to sync. Enter: Coordinator peer! This is the reason to have a server running a peer of GUNDB, to have one trusted party coordinating data all the time! It's all coordination, it always was!
+
+
 # 🏗 Scaffold-ETH
 
 > everything you need to build on Ethereum! 🚀
@@ -38,28 +73,6 @@ yarn start
 cd scaffold-eth
 yarn deploy
 ```
-
-# For this particular challenge, I had to build a Multi-Signature Wallet Smart Contract (MultiSig Wallet for friends) starting from the Scaffold-eth master branch.
-
-Main inspiration is, like always, 🏰 [BuidlGuidl](https://BuidlGuidl.com) and [Austin](https://twitter.com/austingriffith). Using this branch of [Scaffold-Eth](https://github.com/scaffold-eth/scaffold-eth-examples/tree/meta-multi-sig/) from where I snipped almost everything.
-
-Things to look at
-
-🔏 The MultiSig smart contract `MultiSig.sol` in `packages/hardhat/contracts`. It's updated to solidity >0.8.
-
-📝 Most of the frontend is on `App.jsx` in `packages/react-app/src`, and the components and view folders right there.
-
-💼 Deployment script is the basic in `packages/hardhat/deploy`, just added the contract constructor arguments for my wallets. Make sure you change yours!
-
-# Now with decentralized GUNDB to store transactions and signatures!
-
-First time using this, so move with care.
-
-📔 There's a GunDB connection now! It should work out of the box (ie, no need for a centralized peer), but I recommend rnning `yarn gun` to start a peer to coordinate the storage between browsers (Sometimes the connection might not work. It's all coordination, am I right?).
-
-💼 When you're ready to deploy, go to [GunDB's GitHub, deploy section](https://github.com/amark/gun#deploy), and deploy a simple peer to Heroku, Zeet, or whatever. Just remember to add the link to the Gun initialization in App.jsx
-
-📱 Open http://localhost:3000 to see the app
 
 # 📚 Documentation
 
